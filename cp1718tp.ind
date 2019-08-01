@@ -9,18 +9,19 @@
     \subitem Material Pedag\IeC {\'o}gico, \hyperpage{1}, 
 		\hyperpage{6, 7}
   \item Combinador ``pointfree''
-    \subitem \emph  {cata}, \hyperpage{13}
-    \subitem \emph  {either}, \hyperpage{4}, \hyperpage{11}
+    \subitem \emph  {cata}, \hyperpage{14}
+    \subitem \emph  {either}, \hyperpage{4}, \hyperpage{11}, 
+		\hyperpage{13}
 
   \indexspace
 
   \item Fun\IeC {\c c}\IeC {\~a}o
-    \subitem $\pi _1$, \hyperpage{11--13}
-    \subitem $\pi _2$, \hyperpage{11--13}
+    \subitem $\pi _1$, \hyperpage{11--14}
+    \subitem $\pi _2$, \hyperpage{11--14}
     \subitem \emph  {length}, \hyperpage{3, 4}
-    \subitem \emph  {map}, \hyperpage{9--11}
+    \subitem \emph  {map}, \hyperpage{9--11}, \hyperpage{13}
     \subitem \emph  {succ}, \hyperpage{12, 13}
-  \item Functor, \hyperpage{4}, \hyperpage{10}
+  \item Functor, \hyperpage{4}, \hyperpage{10}, \hyperpage{13}
 
   \indexspace
 
@@ -35,7 +36,7 @@
   \indexspace
 
   \item N\IeC {\'u}meros naturais ($I\mskip -\thinmuskip \mskip -\thinmuskip N$), 
-		\hyperpage{13}
+		\hyperpage{14}
 
   \indexspace
 

@@ -81,17 +81,17 @@
 %---------------------------------------------------------------------------
 
 \title{
-       	    Cálculo de Programas
+               Cálculo de Programas
 \\
-       	Trabalho Prático
+           Trabalho Prático
 \\
-       	MiEI+LCC --- 2017/18
+           MiEI+LCC --- 2017/18
 }
 
 \author{
-       	\dium
+           \dium
 \\
-       	Universidade do Minho
+           Universidade do Minho
 }
 
 
@@ -623,15 +623,15 @@ teste2a = outlineQTree (==0) qt == qtOut
 \section*{Problema 3}
 O cálculo das combinações de |n| |k|-a-|k|,
 \begin{eqnarray}
-	|bin n k = frac (fac n)(fac k * (fac ((n-k))))|
-	\label{eq:bin} 
+    |bin n k = frac (fac n)(fac k * (fac ((n-k))))|
+    \label{eq:bin} 
 \end{eqnarray}
 envolve três factoriais. Recorrendo à \material{lei de recursividade múltipla} do cálculo
 de programas, é possível escrever o mesmo programa como um simples ciclo-for
 onde se fazem apenas multiplicações e somas. Para isso, começa-se por estruturar
 a definição dada da forma seguinte,
 \begin{eqnarray*}
-	|bin n k = h k (n - k)|
+    |bin n k = h k (n - k)|
 \end{eqnarray*}
 onde
 \begin{eqnarray*}
@@ -783,7 +783,7 @@ marbleWeights = fmap marbleWeight bagOfMarbles
 \end{code}
 onde |bagOfMarbles| é o saco de berlindes referido acima, obtendo-se:
 \begin{quote}\small
-	\verb!{ 2 |-> 3 , 3 |-> 5 , 6 |-> 2 }!.
+    \verb!{ 2 |-> 3 , 3 |-> 5 , 6 |-> 2 }!.
 \end{quote}
 %
 Mais ainda, se quisermos saber o total de berlindes em |bagOfMarbles| basta
@@ -872,8 +872,8 @@ efeitos especiais em progra\-mação. Por exemplo, a biblioteca \Probability\
 oferece um mónade para abordar problemas de probabilidades. Nesta biblioteca,
 o conceito de distribuição estatística é captado pelo tipo
 \begin{eqnarray}
-	|newtype Dist a = D {unD :: [(a, ProbRep)]}|
-	\label{eq:Dist}
+    |newtype Dist a = D {unD :: [(a, ProbRep)]}|
+    \label{eq:Dist}
 \end{eqnarray}
 em que |ProbRep| é um real de |0| a |1|, equivalente a uma escala de |0| a |100%|.
 
@@ -989,24 +989,19 @@ hyloBlockchain c a = cataBlockchain c . anaBlockchain a
 
 allTransactions = cataBlockchain (either (p2 . p2) (conc . ((p2 . p2) >< id)))
 
-ledger = cataList (either nil updateLedger) . allTransactions
+ledger = cataList (either nil updateLedger) . allTransactions where
+    updateLedger :: (Transaction, Ledger) -> Ledger
+    updateLedger ((src, (v, dst)), []) = [(src, -v), (dst, v)]
+    updateLedger ((src, (v, dst)), ((ent, cur):t)) | ent == src = (ent, cur - v) : updateLedger ((src, (v, dst)), t)
+                                                   | ent == dst = (ent, cur + v) : updateLedger ((src, (v, dst)), t)
+                                                   | otherwise = (ent, cur) : updateLedger ((src, (v, dst)), t)                              
 
-    where updateLedger :: (Transaction, Ledger) -> Ledger
-          updateLedger ((e1, (v, e2)), l) = update (e1, -v) (update (e2, v) l)
-
-          update :: (Entity, Value) -> Ledger -> Ledger
-          update (e, v) [] = [(e, v)]
-          update (e, v) ((x, y) : t) | x == e = (x, y + v) : t
-                                     | otherwise = (x, y) : (update (e, v) t)
-
-isValidMagicNr = check . cataBlockchain (either (singl . p1) (cons . (p1 >< id)))
-
-    where check :: [MagicNo] -> Bool
-          check [m] = True
-          check (x : xs) | elem x xs == True = False
-                         | otherwise = check xs
+isValidMagicNr = check . cataBlockchain (either (singl . p1) (cons . (p1 >< id))) where
+    check :: [MagicNo] -> Bool
+    check [m] = True
+    check (x : xs) | elem x xs == True = False
+                   | otherwise = check xs
 \end{code}
-
 
 \subsection*{Problema 2}
 
@@ -1030,26 +1025,22 @@ hyloQTree a c = cataQTree a . anaQTree c
 instance Functor QTree where
     fmap f = cataQTree ( inQTree . baseQTree f id )
 
-rotateQTree = cataQTree (inQTree . ((id >< swap) -|- troca))
-    
-    where troca (a, (b, (c, d))) = (c, (a, (d, b)))
+rotateQTree = cataQTree (inQTree . ((id >< swap) -|- troca)) where
+    troca (a, (b, (c, d))) = (c, (a, (d, b)))
 
-scaleQTree i = cataQTree (inQTree . ((id >< (multiply i)) -|- id))
-    
-    where multiply i (b, c) = (i * b, i * c)
+scaleQTree i = cataQTree (inQTree . ((id >< (multiply i)) -|- id)) where
+    multiply i (b, c) = (i * b, i * c)
 
-invertQTree = fmap subtract
-    
-    where subtract :: PixelRGBA8 -> PixelRGBA8
-          subtract (PixelRGBA8 red green blue alpha) = PixelRGBA8 (255 - red) (255 - green) (255 - blue) alpha
+invertQTree = fmap subtract where
+    subtract :: PixelRGBA8 -> PixelRGBA8
+    subtract (PixelRGBA8 red green blue alpha) = PixelRGBA8 (255 - red) (255 - green) (255 - blue) alpha
 
 compressQTree 0 = id
-compressQTree n = compressQTree (n-1) . anaQTree compress
-
-    where compress :: QTree a -> Either (a, (Int, Int)) ((QTree a, (QTree a, (QTree a, QTree a))))
-          compress (Cell x y z) = i1 (x, (y, z))
-          compress (Block (Cell x1 y1 z1) (Cell x2 y2 z2) (Cell x3 y3 z3) (Cell x4 y4 z4)) = i1 (x1, ((y1+y2), (z1+z3)))
-          compress (Block a b c d) = i2 (a, (b, (c, d)))
+compressQTree n = compressQTree (n-1) . anaQTree compress where 
+    compress :: QTree a -> Either (a, (Int, Int)) ((QTree a, (QTree a, (QTree a, QTree a))))
+    compress (Cell x y z) = i1 (x, (y, z))
+    compress (Block (Cell x1 y1 z1) (Cell x2 y2 z2) (Cell x3 y3 z3) (Cell x4 y4 z4)) = i1 (x1, ((y1+y2), (z1+z3)))
+    compress (Block a b c d) = i2 (a, (b, (c, d)))
 
 outlineQTree f = qt2bm . fmap f
 \end{code}
@@ -1095,7 +1086,32 @@ instance Bifunctor FTree where
 
 generatePTree = anaFTree (((const 1.0) -|- (split ((sqrt(2) ^) . succ) (split id id))) . outNat)
 
-drawPTree = undefined
+drawPTreeAux p = aux p (0,0) 0 0 where
+    aux :: PTree -> (Float, Float) -> Float -> Int -> [(Int,Picture)]
+    aux (Unit c) (x,y) ang n = [(n, Translate x y (Rotate ang (square c)))]
+    aux (Comp c l r) (x,y) ang n = [(n, currentPic)] ++ 
+                                    (aux l (x + somaXLeft,y + somaYLeft) (ang - 45) (n+1)) ++ 
+                                    (aux r (x + somaXRight,y + somaYRight) (ang + 45) (n+1)) where
+                                    
+        somaX = c/2
+        somaY = c
+        angRads = ang * pi / 180
+        branchToGlobal angle (dx,dy) = (dx * cos angle + dy * sin angle, dy * cos angle - dx * sin angle)
+        (somaXLeft, somaYLeft) = branchToGlobal angRads (-somaX, somaY)
+        (somaXRight, somaYRight) = branchToGlobal angRads (somaX, somaY)
+        currentPic = Translate x y (Rotate ang (square c))
+
+sortGT :: (Int, a) -> (Int, a) -> Ordering 
+sortGT (a1, b1) (a2, b2) | a1 < a2 = LT
+                         | a1 > a2 = GT
+                         | a1 == a2 = LT
+
+drawPTree = accumCata . map (Pictures . map p2) . grouping . drawPTreeAux where
+    grouping = groupBy (\(l1, pic1) (l2, pic2) -> l1 == l2) . sortBy sortGT
+
+accumCata = reverse . cataList (either nil f) . reverse where 
+    f = cons . split (Pictures . cons) p2
+
 \end{code}
 
 \subsection*{Problema 5}
@@ -1112,30 +1128,36 @@ extractBag ( (B ((x,y) :  t), i) : [] ) = (x, y * i) : extractBag ( (B t, i) : [
 extractBag ( (B ((x,y) : []), i) : ts ) = (x, y * i) : extractBag ts
 extractBag ( (B ((x,y) :  t), i) : ts ) = (x, y * i) : extractBag ( (B t, i) : ts )
 
-dist = undefined
+dist :: Bag a -> Dist a 
+dist = D . genProb where 
+    genProb b = map getProb (unB b) where 
+        getProb (a,c) = (a, (fromIntegral c / totalN b))
+        totalN = fromIntegral . p2 . head . consol . unB . countBag
+        countBag = fmap (!)
+
 \end{code}
 
 \section{Como exprimir cálculos e diagramas em LaTeX/lhs2tex}
 Estudar o texto fonte deste trabalho para obter o efeito:\footnote{Exemplos tirados de \cite{Ol18}.} 
 \begin{eqnarray*}
 \start
-	|id = split f g|
+    |id = split f g|
 %
 \just\equiv{ universal property }
 %
         |lcbr(
-		p1 . id = f
-	)(
-		p2 . id = g
-	)|
+        p1 . id = f
+    )(
+        p2 . id = g
+    )|
 %
 \just\equiv{ identity }
 %
         |lcbr(
-		p1 = f
-	)(
-		p2 = g
-	)|
+        p1 = f
+    )(
+        p2 = g
+    )|
 \qed
 \end{eqnarray*}
 
@@ -1415,6 +1437,9 @@ qt = bm2qt bm
 data FTree a b = Unit b | Comp a (FTree a b) (FTree a b) deriving (Eq,Show)
 type PTree = FTree Square Square
 type Square = Float
+
+ptree :: PTree
+ptree = Comp 1 (Comp 2 (Unit 3) (Unit 4)) (Comp 5 (Unit 6) (Unit 7))
 
 inFTree :: Either b (a, (FTree a b, FTree a b)) -> FTree a b
 outFTree :: FTree a1 a2 -> Either a2 (a1, (FTree a1 a2, FTree a1 a2))

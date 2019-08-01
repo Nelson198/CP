@@ -271,17 +271,17 @@
 %---------------------------------------------------------------------------
 
 \title{
-       	    Cálculo de Programas
+               Cálculo de Programas
 \\
-       	Trabalho Prático
+           Trabalho Prático
 \\
-       	MiEI+LCC --- 2017/18
+           MiEI+LCC --- 2017/18
 }
 
 \author{
-       	\dium
+           \dium
 \\
-       	Universidade do Minho
+           Universidade do Minho
 }
 
 
@@ -845,15 +845,15 @@ Esta questão aborda operações de processamento de imagens utilizando quadtree
 \section*{Problema 3}
 O cálculo das combinações de \ensuremath{\Varid{n}} \ensuremath{\Varid{k}}-a-\ensuremath{\Varid{k}},
 \begin{eqnarray}
-	\ensuremath{\Big(\vcenter{\xymatrix@R=1pt{\Varid{n}\\\Varid{k}}}\Big)\mathrel{=}\frac{{\Varid{n}!}}{{\Varid{k}!}\mathbin{*}{(\Varid{n}\mathbin{-}\Varid{k})!}}}
-	\label{eq:bin} 
+    \ensuremath{\Big(\vcenter{\xymatrix@R=1pt{\Varid{n}\\\Varid{k}}}\Big)\mathrel{=}\frac{{\Varid{n}!}}{{\Varid{k}!}\mathbin{*}{(\Varid{n}\mathbin{-}\Varid{k})!}}}
+    \label{eq:bin} 
 \end{eqnarray}
 envolve três factoriais. Recorrendo à \material{lei de recursividade múltipla} do cálculo
 de programas, é possível escrever o mesmo programa como um simples ciclo-for
 onde se fazem apenas multiplicações e somas. Para isso, começa-se por estruturar
 a definição dada da forma seguinte,
 \begin{eqnarray*}
-	\ensuremath{\Big(\vcenter{\xymatrix@R=1pt{\Varid{n}\\\Varid{k}}}\Big)\mathrel{=}\Varid{h}\;\Varid{k}\;(\Varid{n}\mathbin{-}\Varid{k})}
+    \ensuremath{\Big(\vcenter{\xymatrix@R=1pt{\Varid{n}\\\Varid{k}}}\Big)\mathrel{=}\Varid{h}\;\Varid{k}\;(\Varid{n}\mathbin{-}\Varid{k})}
 \end{eqnarray*}
 onde
 \begin{eqnarray*}
@@ -1033,7 +1033,7 @@ basta calcular
 \end{hscode}\resethooks
 onde \ensuremath{\Varid{bagOfMarbles}} é o saco de berlindes referido acima, obtendo-se:
 \begin{quote}\small
-	\text{\tt \char123{}~2~\char124{}\char45{}\char62{}~3~\char44{}~3~\char124{}\char45{}\char62{}~5~\char44{}~6~\char124{}\char45{}\char62{}~2~\char125{}}.
+    \text{\tt \char123{}~2~\char124{}\char45{}\char62{}~3~\char44{}~3~\char124{}\char45{}\char62{}~5~\char44{}~6~\char124{}\char45{}\char62{}~2~\char125{}}.
 \end{quote}
 %
 Mais ainda, se quisermos saber o total de berlindes em \ensuremath{\Varid{bagOfMarbles}} basta
@@ -1135,8 +1135,8 @@ efeitos especiais em progra\-mação. Por exemplo, a biblioteca \Probability\
 oferece um mónade para abordar problemas de probabilidades. Nesta biblioteca,
 o conceito de distribuição estatística é captado pelo tipo
 \begin{eqnarray}
-	\ensuremath{\mathbf{newtype}\;\fun{Dist}\;\Varid{a}\mathrel{=}\Conid{D}\;\{\mskip1.5mu \Varid{unD}\mathbin{::}[\mskip1.5mu (\Varid{a},\Conid{ProbRep})\mskip1.5mu]\mskip1.5mu\}}
-	\label{eq:Dist}
+    \ensuremath{\mathbf{newtype}\;\fun{Dist}\;\Varid{a}\mathrel{=}\Conid{D}\;\{\mskip1.5mu \Varid{unD}\mathbin{::}[\mskip1.5mu (\Varid{a},\Conid{ProbRep})\mskip1.5mu]\mskip1.5mu\}}
+    \label{eq:Dist}
 \end{eqnarray}
 em que \ensuremath{\Conid{ProbRep}} é um real de \ensuremath{\mathrm{0}} a \ensuremath{\mathrm{1}}, equivalente a uma escala de \ensuremath{\mathrm{0}} a \ensuremath{\mathrm{100}\mathbin{/}}.
 
@@ -1301,9 +1301,8 @@ outras funções auxiliares que sejam necessárias.
 \begin{hscode}\SaveRestoreHook
 \column{B}{@{}>{\hspre}l<{\hspost}@{}}%
 \column{5}{@{}>{\hspre}l<{\hspost}@{}}%
-\column{11}{@{}>{\hspre}l<{\hspost}@{}}%
-\column{26}{@{}>{\hspre}l<{\hspost}@{}}%
-\column{38}{@{}>{\hspre}l<{\hspost}@{}}%
+\column{20}{@{}>{\hspre}l<{\hspost}@{}}%
+\column{52}{@{}>{\hspre}l<{\hspost}@{}}%
 \column{E}{@{}>{\hspre}l<{\hspost}@{}}%
 \>[B]{}\Varid{inBlockchain}\mathrel{=}\alt{\Conid{Bc}}{\Conid{Bcs}}{}\<[E]%
 \\[\blanklineskip]%
@@ -1323,49 +1322,44 @@ outras funções auxiliares que sejam necessárias.
 \\[\blanklineskip]%
 \>[B]{}\Varid{allTransactions}\mathrel{=}\Varid{cataBlockchain}\;\alt{\p2\comp \p2}{\mathsf{conc}\comp ((\p2\comp \p2)\times\Varid{id})}{}\<[E]%
 \\[\blanklineskip]%
-\>[B]{}\Varid{ledger}\mathrel{=}\Varid{cataList}\;\alt{\Varid{nil}}{\Varid{updateLedger}}\comp \Varid{allTransactions}{}\<[E]%
-\\[\blanklineskip]%
+\>[B]{}\Varid{ledger}\mathrel{=}\Varid{cataList}\;\alt{\Varid{nil}}{\Varid{updateLedger}}\comp \Varid{allTransactions}\;\mathbf{where}{}\<[E]%
+\\
 \>[B]{}\hsindent{5}{}\<[5]%
-\>[5]{}\mathbf{where}\;\Varid{updateLedger}\mathbin{::}(\Conid{Transaction},\Conid{Ledger})\to \Conid{Ledger}{}\<[E]%
+\>[5]{}\Varid{updateLedger}\mathbin{::}(\Conid{Transaction},\Conid{Ledger})\to \Conid{Ledger}{}\<[E]%
 \\
-\>[5]{}\hsindent{6}{}\<[11]%
-\>[11]{}\Varid{updateLedger}\;((e_1 ,(\Varid{v},e_2 )),\Varid{l})\mathrel{=}\Varid{update}\;(e_1 ,\mathbin{-}\Varid{v})\;(\Varid{update}\;(e_2 ,\Varid{v})\;\Varid{l}){}\<[E]%
-\\[\blanklineskip]%
-\>[5]{}\hsindent{6}{}\<[11]%
-\>[11]{}\Varid{update}\mathbin{::}(\Conid{Entity},\Conid{Value})\to \Conid{Ledger}\to \Conid{Ledger}{}\<[E]%
-\\
-\>[5]{}\hsindent{6}{}\<[11]%
-\>[11]{}\Varid{update}\;(\Varid{e},\Varid{v})\;[\mskip1.5mu \mskip1.5mu]\mathrel{=}[\mskip1.5mu (\Varid{e},\Varid{v})\mskip1.5mu]{}\<[E]%
-\\
-\>[5]{}\hsindent{6}{}\<[11]%
-\>[11]{}\Varid{update}\;(\Varid{e},\Varid{v})\;((\Varid{x},\Varid{y})\mathbin{:}\Varid{t})\mid \Varid{x}\equiv \Varid{e}\mathrel{=}(\Varid{x},\Varid{y}\mathbin{+}\Varid{v})\mathbin{:}\Varid{t}{}\<[E]%
-\\
-\>[11]{}\hsindent{27}{}\<[38]%
-\>[38]{}\mid \Varid{otherwise}\mathrel{=}(\Varid{x},\Varid{y})\mathbin{:}(\Varid{update}\;(\Varid{e},\Varid{v})\;\Varid{t}){}\<[E]%
-\\[\blanklineskip]%
-\>[B]{}\Varid{isValidMagicNr}\mathrel{=}\Varid{check}\comp \Varid{cataBlockchain}\;\alt{\Varid{singl}\comp \p1}{\Varid{cons}\comp (\p1\times\Varid{id})}{}\<[E]%
-\\[\blanklineskip]%
 \>[B]{}\hsindent{5}{}\<[5]%
-\>[5]{}\mathbf{where}\;\Varid{check}\mathbin{::}[\mskip1.5mu \Conid{MagicNo}\mskip1.5mu]\to \Conid{Bool}{}\<[E]%
+\>[5]{}\Varid{updateLedger}\;((\Varid{src},(\Varid{v},\Varid{dst})),[\mskip1.5mu \mskip1.5mu])\mathrel{=}[\mskip1.5mu (\Varid{src},\mathbin{-}\Varid{v}),(\Varid{dst},\Varid{v})\mskip1.5mu]{}\<[E]%
 \\
-\>[5]{}\hsindent{6}{}\<[11]%
-\>[11]{}\Varid{check}\;[\mskip1.5mu \Varid{m}\mskip1.5mu]\mathrel{=}\Conid{True}{}\<[E]%
+\>[B]{}\hsindent{5}{}\<[5]%
+\>[5]{}\Varid{updateLedger}\;((\Varid{src},(\Varid{v},\Varid{dst})),((\Varid{ent},\Varid{cur})\mathbin{:}\Varid{t}))\mid \Varid{ent}\equiv \Varid{src}\mathrel{=}(\Varid{ent},\Varid{cur}\mathbin{-}\Varid{v})\mathbin{:}\Varid{updateLedger}\;((\Varid{src},(\Varid{v},\Varid{dst})),\Varid{t}){}\<[E]%
 \\
-\>[5]{}\hsindent{6}{}\<[11]%
-\>[11]{}\Varid{check}\;(\Varid{x}\mathbin{:}\Varid{xs})\mid \Varid{elem}\;\Varid{x}\;\Varid{xs}\equiv \Conid{True}\mathrel{=}\Conid{False}{}\<[E]%
+\>[5]{}\hsindent{47}{}\<[52]%
+\>[52]{}\mid \Varid{ent}\equiv \Varid{dst}\mathrel{=}(\Varid{ent},\Varid{cur}\mathbin{+}\Varid{v})\mathbin{:}\Varid{updateLedger}\;((\Varid{src},(\Varid{v},\Varid{dst})),\Varid{t}){}\<[E]%
 \\
-\>[11]{}\hsindent{15}{}\<[26]%
-\>[26]{}\mid \Varid{otherwise}\mathrel{=}\Varid{check}\;\Varid{xs}{}\<[E]%
+\>[5]{}\hsindent{47}{}\<[52]%
+\>[52]{}\mid \Varid{otherwise}\mathrel{=}(\Varid{ent},\Varid{cur})\mathbin{:}\Varid{updateLedger}\;((\Varid{src},(\Varid{v},\Varid{dst})),\Varid{t}){}\<[E]%
+\\[\blanklineskip]%
+\>[B]{}\Varid{isValidMagicNr}\mathrel{=}\Varid{check}\comp \Varid{cataBlockchain}\;\alt{\Varid{singl}\comp \p1}{\Varid{cons}\comp (\p1\times\Varid{id})}\;\mathbf{where}{}\<[E]%
+\\
+\>[B]{}\hsindent{5}{}\<[5]%
+\>[5]{}\Varid{check}\mathbin{::}[\mskip1.5mu \Conid{MagicNo}\mskip1.5mu]\to \Conid{Bool}{}\<[E]%
+\\
+\>[B]{}\hsindent{5}{}\<[5]%
+\>[5]{}\Varid{check}\;[\mskip1.5mu \Varid{m}\mskip1.5mu]\mathrel{=}\Conid{True}{}\<[E]%
+\\
+\>[B]{}\hsindent{5}{}\<[5]%
+\>[5]{}\Varid{check}\;(\Varid{x}\mathbin{:}\Varid{xs})\mid \Varid{elem}\;\Varid{x}\;\Varid{xs}\equiv \Conid{True}\mathrel{=}\Conid{False}{}\<[E]%
+\\
+\>[5]{}\hsindent{15}{}\<[20]%
+\>[20]{}\mid \Varid{otherwise}\mathrel{=}\Varid{check}\;\Varid{xs}{}\<[E]%
 \ColumnHook
 \end{hscode}\resethooks
-
 
 \subsection*{Problema 2}
 
 \begin{hscode}\SaveRestoreHook
 \column{B}{@{}>{\hspre}l<{\hspost}@{}}%
 \column{5}{@{}>{\hspre}l<{\hspost}@{}}%
-\column{11}{@{}>{\hspre}l<{\hspost}@{}}%
 \column{E}{@{}>{\hspre}l<{\hspost}@{}}%
 \>[B]{}\Varid{inQTree}\;(i_1\;(\Varid{a},(\Varid{x},\Varid{y})))\mathrel{=}\Conid{Cell}\;\Varid{a}\;\Varid{x}\;\Varid{y}{}\<[E]%
 \\
@@ -1390,39 +1384,39 @@ outras funções auxiliares que sejam necessárias.
 \>[B]{}\hsindent{5}{}\<[5]%
 \>[5]{}\mathsf{fmap}\;\Varid{f}\mathrel{=}\Varid{cataQTree}\;(\Varid{inQTree}\comp \Varid{baseQTree}\;\Varid{f}\;\Varid{id}){}\<[E]%
 \\[\blanklineskip]%
-\>[B]{}\Varid{rotateQTree}\mathrel{=}\Varid{cataQTree}\;(\Varid{inQTree}\comp ((\Varid{id}\times\Varid{swap})+\Varid{troca})){}\<[E]%
-\\[\blanklineskip]%
-\>[B]{}\hsindent{5}{}\<[5]%
-\>[5]{}\mathbf{where}\;\Varid{troca}\;(\Varid{a},(\Varid{b},(\Varid{c},\Varid{d})))\mathrel{=}(\Varid{c},(\Varid{a},(\Varid{d},\Varid{b}))){}\<[E]%
-\\[\blanklineskip]%
-\>[B]{}\Varid{scaleQTree}\;\Varid{i}\mathrel{=}\Varid{cataQTree}\;(\Varid{inQTree}\comp ((\Varid{id}\times(\Varid{multiply}\;\Varid{i}))+\Varid{id})){}\<[E]%
-\\[\blanklineskip]%
-\>[B]{}\hsindent{5}{}\<[5]%
-\>[5]{}\mathbf{where}\;\Varid{multiply}\;\Varid{i}\;(\Varid{b},\Varid{c})\mathrel{=}(\Varid{i}\mathbin{*}\Varid{b},\Varid{i}\mathbin{*}\Varid{c}){}\<[E]%
-\\[\blanklineskip]%
-\>[B]{}\Varid{invertQTree}\mathrel{=}\mathsf{fmap}\;\Varid{subtract}{}\<[E]%
-\\[\blanklineskip]%
-\>[B]{}\hsindent{5}{}\<[5]%
-\>[5]{}\mathbf{where}\;\Varid{subtract}\mathbin{::}\Conid{PixelRGBA8}\to \Conid{PixelRGBA8}{}\<[E]%
+\>[B]{}\Varid{rotateQTree}\mathrel{=}\Varid{cataQTree}\;(\Varid{inQTree}\comp ((\Varid{id}\times\Varid{swap})+\Varid{troca}))\;\mathbf{where}{}\<[E]%
 \\
-\>[5]{}\hsindent{6}{}\<[11]%
-\>[11]{}\Varid{subtract}\;(\Conid{PixelRGBA8}\;\Varid{red}\;\Varid{green}\;\Varid{blue}\;\Varid{alpha})\mathrel{=}\Conid{PixelRGBA8}\;(\mathrm{255}\mathbin{-}\Varid{red})\;(\mathrm{255}\mathbin{-}\Varid{green})\;(\mathrm{255}\mathbin{-}\Varid{blue})\;\Varid{alpha}{}\<[E]%
+\>[B]{}\hsindent{5}{}\<[5]%
+\>[5]{}\Varid{troca}\;(\Varid{a},(\Varid{b},(\Varid{c},\Varid{d})))\mathrel{=}(\Varid{c},(\Varid{a},(\Varid{d},\Varid{b}))){}\<[E]%
+\\[\blanklineskip]%
+\>[B]{}\Varid{scaleQTree}\;\Varid{i}\mathrel{=}\Varid{cataQTree}\;(\Varid{inQTree}\comp ((\Varid{id}\times(\Varid{multiply}\;\Varid{i}))+\Varid{id}))\;\mathbf{where}{}\<[E]%
+\\
+\>[B]{}\hsindent{5}{}\<[5]%
+\>[5]{}\Varid{multiply}\;\Varid{i}\;(\Varid{b},\Varid{c})\mathrel{=}(\Varid{i}\mathbin{*}\Varid{b},\Varid{i}\mathbin{*}\Varid{c}){}\<[E]%
+\\[\blanklineskip]%
+\>[B]{}\Varid{invertQTree}\mathrel{=}\mathsf{fmap}\;\Varid{subtract}\;\mathbf{where}{}\<[E]%
+\\
+\>[B]{}\hsindent{5}{}\<[5]%
+\>[5]{}\Varid{subtract}\mathbin{::}\Conid{PixelRGBA8}\to \Conid{PixelRGBA8}{}\<[E]%
+\\
+\>[B]{}\hsindent{5}{}\<[5]%
+\>[5]{}\Varid{subtract}\;(\Conid{PixelRGBA8}\;\Varid{red}\;\Varid{green}\;\Varid{blue}\;\Varid{alpha})\mathrel{=}\Conid{PixelRGBA8}\;(\mathrm{255}\mathbin{-}\Varid{red})\;(\mathrm{255}\mathbin{-}\Varid{green})\;(\mathrm{255}\mathbin{-}\Varid{blue})\;\Varid{alpha}{}\<[E]%
 \\[\blanklineskip]%
 \>[B]{}\Varid{compressQTree}\;\mathrm{0}\mathrel{=}\Varid{id}{}\<[E]%
 \\
-\>[B]{}\Varid{compressQTree}\;\Varid{n}\mathrel{=}\Varid{compressQTree}\;(\Varid{n}\mathbin{-}\mathrm{1})\comp \Varid{anaQTree}\;\Varid{compress}{}\<[E]%
-\\[\blanklineskip]%
+\>[B]{}\Varid{compressQTree}\;\Varid{n}\mathrel{=}\Varid{compressQTree}\;(\Varid{n}\mathbin{-}\mathrm{1})\comp \Varid{anaQTree}\;\Varid{compress}\;\mathbf{where}{}\<[E]%
+\\
 \>[B]{}\hsindent{5}{}\<[5]%
-\>[5]{}\mathbf{where}\;\Varid{compress}\mathbin{::}\Conid{QTree}\;\Varid{a}\to (\Varid{a},(\Conid{Int},\Conid{Int}))+((\Conid{QTree}\;\Varid{a},(\Conid{QTree}\;\Varid{a},(\Conid{QTree}\;\Varid{a},\Conid{QTree}\;\Varid{a})))){}\<[E]%
+\>[5]{}\Varid{compress}\mathbin{::}\Conid{QTree}\;\Varid{a}\to (\Varid{a},(\Conid{Int},\Conid{Int}))+((\Conid{QTree}\;\Varid{a},(\Conid{QTree}\;\Varid{a},(\Conid{QTree}\;\Varid{a},\Conid{QTree}\;\Varid{a})))){}\<[E]%
 \\
-\>[5]{}\hsindent{6}{}\<[11]%
-\>[11]{}\Varid{compress}\;(\Conid{Cell}\;\Varid{x}\;\Varid{y}\;\Varid{z})\mathrel{=}i_1\;(\Varid{x},(\Varid{y},\Varid{z})){}\<[E]%
+\>[B]{}\hsindent{5}{}\<[5]%
+\>[5]{}\Varid{compress}\;(\Conid{Cell}\;\Varid{x}\;\Varid{y}\;\Varid{z})\mathrel{=}i_1\;(\Varid{x},(\Varid{y},\Varid{z})){}\<[E]%
 \\
-\>[5]{}\hsindent{6}{}\<[11]%
-\>[11]{}\Varid{compress}\;(\Conid{Block}\;(\Conid{Cell}\;\Varid{x1}\;\Varid{y1}\;\Varid{z1})\;(\Conid{Cell}\;\Varid{x2}\;\Varid{y2}\;\Varid{z2})\;(\Conid{Cell}\;\Varid{x3}\;\Varid{y3}\;\Varid{z3})\;(\Conid{Cell}\;\Varid{x4}\;\Varid{y4}\;\Varid{z4}))\mathrel{=}i_1\;(\Varid{x1},((\Varid{y1}\mathbin{+}\Varid{y2}),(\Varid{z1}\mathbin{+}\Varid{z3}))){}\<[E]%
+\>[B]{}\hsindent{5}{}\<[5]%
+\>[5]{}\Varid{compress}\;(\Conid{Block}\;(\Conid{Cell}\;\Varid{x1}\;\Varid{y1}\;\Varid{z1})\;(\Conid{Cell}\;\Varid{x2}\;\Varid{y2}\;\Varid{z2})\;(\Conid{Cell}\;\Varid{x3}\;\Varid{y3}\;\Varid{z3})\;(\Conid{Cell}\;\Varid{x4}\;\Varid{y4}\;\Varid{z4}))\mathrel{=}i_1\;(\Varid{x1},((\Varid{y1}\mathbin{+}\Varid{y2}),(\Varid{z1}\mathbin{+}\Varid{z3}))){}\<[E]%
 \\
-\>[5]{}\hsindent{6}{}\<[11]%
-\>[11]{}\Varid{compress}\;(\Conid{Block}\;\Varid{a}\;\Varid{b}\;\Varid{c}\;\Varid{d})\mathrel{=}i_2\;(\Varid{a},(\Varid{b},(\Varid{c},\Varid{d}))){}\<[E]%
+\>[B]{}\hsindent{5}{}\<[5]%
+\>[5]{}\Varid{compress}\;(\Conid{Block}\;\Varid{a}\;\Varid{b}\;\Varid{c}\;\Varid{d})\mathrel{=}i_2\;(\Varid{a},(\Varid{b},(\Varid{c},\Varid{d}))){}\<[E]%
 \\[\blanklineskip]%
 \>[B]{}\Varid{outlineQTree}\;\Varid{f}\mathrel{=}\Varid{qt2bm}\comp \mathsf{fmap}\;\Varid{f}{}\<[E]%
 \ColumnHook
@@ -1456,6 +1450,9 @@ outras funções auxiliares que sejam necessárias.
 \begin{hscode}\SaveRestoreHook
 \column{B}{@{}>{\hspre}l<{\hspost}@{}}%
 \column{5}{@{}>{\hspre}l<{\hspost}@{}}%
+\column{9}{@{}>{\hspre}l<{\hspost}@{}}%
+\column{26}{@{}>{\hspre}l<{\hspost}@{}}%
+\column{37}{@{}>{\hspre}l<{\hspost}@{}}%
 \column{E}{@{}>{\hspre}l<{\hspost}@{}}%
 \>[B]{}\Varid{inFTree}\;(i_1\;\Varid{x})\mathrel{=}\Conid{Unit}\;\Varid{x}{}\<[E]%
 \\
@@ -1482,7 +1479,63 @@ outras funções auxiliares que sejam necessárias.
 \\[\blanklineskip]%
 \>[B]{}\Varid{generatePTree}\mathrel{=}\Varid{anaFTree}\;((\underline{\mathrm{1.0}}+\conj{(\Varid{sqrt}\;(\mathrm{2})\mathbin{\uparrow})\comp \succ }{\conj{\Varid{id}}{\Varid{id}}})\comp \Varid{outNat}){}\<[E]%
 \\[\blanklineskip]%
-\>[B]{}\Varid{drawPTree}\mathrel{=}\bot {}\<[E]%
+\>[B]{}\Varid{drawPTreeAux}\;\Varid{p}\mathrel{=}\Varid{aux}\;\Varid{p}\;(\mathrm{0},\mathrm{0})\;\mathrm{0}\;\mathrm{0}\;\mathbf{where}{}\<[E]%
+\\
+\>[B]{}\hsindent{5}{}\<[5]%
+\>[5]{}\Varid{aux}\mathbin{::}\Conid{PTree}\to (\Conid{Float},\Conid{Float})\to \Conid{Float}\to \Conid{Int}\to [\mskip1.5mu (\Conid{Int},\Conid{Picture})\mskip1.5mu]{}\<[E]%
+\\
+\>[B]{}\hsindent{5}{}\<[5]%
+\>[5]{}\Varid{aux}\;(\Conid{Unit}\;\Varid{c})\;(\Varid{x},\Varid{y})\;\Varid{ang}\;\Varid{n}\mathrel{=}[\mskip1.5mu (\Varid{n},\Conid{Translate}\;\Varid{x}\;\Varid{y}\;(\Conid{Rotate}\;\Varid{ang}\;(\Varid{square}\;\Varid{c})))\mskip1.5mu]{}\<[E]%
+\\
+\>[B]{}\hsindent{5}{}\<[5]%
+\>[5]{}\Varid{aux}\;(\Conid{Comp}\;\Varid{c}\;\Varid{l}\;\Varid{r})\;(\Varid{x},\Varid{y})\;\Varid{ang}\;\Varid{n}\mathrel{=}[\mskip1.5mu (\Varid{n},\Varid{currentPic})\mskip1.5mu]\plus {}\<[E]%
+\\
+\>[5]{}\hsindent{32}{}\<[37]%
+\>[37]{}(\Varid{aux}\;\Varid{l}\;(\Varid{x}\mathbin{+}\Varid{somaXLeft},\Varid{y}\mathbin{+}\Varid{somaYLeft})\;(\Varid{ang}\mathbin{-}\mathrm{45})\;(\Varid{n}\mathbin{+}\mathrm{1}))\plus {}\<[E]%
+\\
+\>[5]{}\hsindent{32}{}\<[37]%
+\>[37]{}(\Varid{aux}\;\Varid{r}\;(\Varid{x}\mathbin{+}\Varid{somaXRight},\Varid{y}\mathbin{+}\Varid{somaYRight})\;(\Varid{ang}\mathbin{+}\mathrm{45})\;(\Varid{n}\mathbin{+}\mathrm{1}))\;\mathbf{where}{}\<[E]%
+\\[\blanklineskip]%
+\>[5]{}\hsindent{4}{}\<[9]%
+\>[9]{}\Varid{somaX}\mathrel{=}\Varid{c}\mathbin{/}\mathrm{2}{}\<[E]%
+\\
+\>[5]{}\hsindent{4}{}\<[9]%
+\>[9]{}\Varid{somaY}\mathrel{=}\Varid{c}{}\<[E]%
+\\
+\>[5]{}\hsindent{4}{}\<[9]%
+\>[9]{}\Varid{angRads}\mathrel{=}\Varid{ang}\mathbin{*}\Varid{pi}\mathbin{/}\mathrm{180}{}\<[E]%
+\\
+\>[5]{}\hsindent{4}{}\<[9]%
+\>[9]{}\Varid{branchToGlobal}\;\Varid{angle}\;(\Varid{dx},\Varid{dy})\mathrel{=}(\Varid{dx}\mathbin{*}\Varid{cos}\;\Varid{angle}\mathbin{+}\Varid{dy}\mathbin{*}\Varid{sin}\;\Varid{angle},\Varid{dy}\mathbin{*}\Varid{cos}\;\Varid{angle}\mathbin{-}\Varid{dx}\mathbin{*}\Varid{sin}\;\Varid{angle}){}\<[E]%
+\\
+\>[5]{}\hsindent{4}{}\<[9]%
+\>[9]{}(\Varid{somaXLeft},\Varid{somaYLeft})\mathrel{=}\Varid{branchToGlobal}\;\Varid{angRads}\;(\mathbin{-}\Varid{somaX},\Varid{somaY}){}\<[E]%
+\\
+\>[5]{}\hsindent{4}{}\<[9]%
+\>[9]{}(\Varid{somaXRight},\Varid{somaYRight})\mathrel{=}\Varid{branchToGlobal}\;\Varid{angRads}\;(\Varid{somaX},\Varid{somaY}){}\<[E]%
+\\
+\>[5]{}\hsindent{4}{}\<[9]%
+\>[9]{}\Varid{currentPic}\mathrel{=}\Conid{Translate}\;\Varid{x}\;\Varid{y}\;(\Conid{Rotate}\;\Varid{ang}\;(\Varid{square}\;\Varid{c})){}\<[E]%
+\\[\blanklineskip]%
+\>[B]{}\Varid{sortGT}\mathbin{::}(\Conid{Int},\Varid{a})\to (\Conid{Int},\Varid{a})\to \Conid{Ordering}{}\<[E]%
+\\
+\>[B]{}\Varid{sortGT}\;(\Varid{a1},\Varid{b1})\;(\Varid{a2},\Varid{b2})\mid \Varid{a1}\mathbin{<}\Varid{a2}\mathrel{=}\Conid{LT}{}\<[E]%
+\\
+\>[B]{}\hsindent{26}{}\<[26]%
+\>[26]{}\mid \Varid{a1}\mathbin{>}\Varid{a2}\mathrel{=}\Conid{GT}{}\<[E]%
+\\
+\>[B]{}\hsindent{26}{}\<[26]%
+\>[26]{}\mid \Varid{a1}\equiv \Varid{a2}\mathrel{=}\Conid{LT}{}\<[E]%
+\\[\blanklineskip]%
+\>[B]{}\Varid{drawPTree}\mathrel{=}\Varid{accumCata}\comp \map \;(\Conid{Pictures}\comp \map \;\p2)\comp \Varid{grouping}\comp \Varid{drawPTreeAux}\;\mathbf{where}{}\<[E]%
+\\
+\>[B]{}\hsindent{5}{}\<[5]%
+\>[5]{}\Varid{grouping}\mathrel{=}\Varid{groupBy}\;(\lambda (\Varid{l1},\Varid{pic1})\;(\Varid{l2},\Varid{pic2})\to \Varid{l1}\equiv \Varid{l2})\comp \Varid{sortBy}\;\Varid{sortGT}{}\<[E]%
+\\[\blanklineskip]%
+\>[B]{}\Varid{accumCata}\mathrel{=}\Varid{reverse}\comp \Varid{cataList}\;\alt{\Varid{nil}}{\Varid{f}}\comp \Varid{reverse}\;\mathbf{where}{}\<[E]%
+\\
+\>[B]{}\hsindent{5}{}\<[5]%
+\>[5]{}\Varid{f}\mathrel{=}\Varid{cons}\comp \conj{\Conid{Pictures}\comp \Varid{cons}}{\p2}{}\<[E]%
 \ColumnHook
 \end{hscode}\resethooks
 
@@ -1490,6 +1543,8 @@ outras funções auxiliares que sejam necessárias.
 
 \begin{hscode}\SaveRestoreHook
 \column{B}{@{}>{\hspre}l<{\hspost}@{}}%
+\column{5}{@{}>{\hspre}l<{\hspost}@{}}%
+\column{9}{@{}>{\hspre}l<{\hspost}@{}}%
 \column{27}{@{}>{\hspre}l<{\hspost}@{}}%
 \column{E}{@{}>{\hspre}l<{\hspost}@{}}%
 \>[B]{}\Varid{singletonbag}\;\Varid{x}\mathrel{=}\mathit B\;[\mskip1.5mu (\Varid{x},\mathrm{1})\mskip1.5mu]{}\<[E]%
@@ -1510,7 +1565,21 @@ outras funções auxiliares que sejam necessárias.
 \>[B]{}\Varid{extractBag}\;((\mathit B\;((\Varid{x},\Varid{y})\mathbin{:}{}\<[27]%
 \>[27]{}\Varid{t}),\Varid{i})\mathbin{:}\Varid{ts})\mathrel{=}(\Varid{x},\Varid{y}\mathbin{*}\Varid{i})\mathbin{:}\Varid{extractBag}\;((\mathit B\;\Varid{t},\Varid{i})\mathbin{:}\Varid{ts}){}\<[E]%
 \\[\blanklineskip]%
-\>[B]{}\Varid{dist}\mathrel{=}\bot {}\<[E]%
+\>[B]{}\Varid{dist}\mathbin{::}\Conid{Bag}\;\Varid{a}\to \fun{Dist}\;\Varid{a}{}\<[E]%
+\\
+\>[B]{}\Varid{dist}\mathrel{=}\Conid{D}\comp \Varid{genProb}\;\mathbf{where}{}\<[E]%
+\\
+\>[B]{}\hsindent{5}{}\<[5]%
+\>[5]{}\Varid{genProb}\;\Varid{b}\mathrel{=}\map \;\Varid{getProb}\;(\Varid{unB}\;\Varid{b})\;\mathbf{where}{}\<[E]%
+\\
+\>[5]{}\hsindent{4}{}\<[9]%
+\>[9]{}\Varid{getProb}\;(\Varid{a},\Varid{c})\mathrel{=}(\Varid{a},(\Varid{fromIntegral}\;\Varid{c}\mathbin{/}\Varid{totalN}\;\Varid{b})){}\<[E]%
+\\
+\>[5]{}\hsindent{4}{}\<[9]%
+\>[9]{}\Varid{totalN}\mathrel{=}\Varid{fromIntegral}\comp \p2\comp \Varid{head}\comp \Varid{consol}\comp \Varid{unB}\comp \Varid{countBag}{}\<[E]%
+\\
+\>[5]{}\hsindent{4}{}\<[9]%
+\>[9]{}\Varid{countBag}\mathrel{=}\mathsf{fmap}\;(\mathbin{!}){}\<[E]%
 \ColumnHook
 \end{hscode}\resethooks
 
@@ -1518,7 +1587,7 @@ outras funções auxiliares que sejam necessárias.
 Estudar o texto fonte deste trabalho para obter o efeito:\footnote{Exemplos tirados de \cite{Ol18}.} 
 \begin{eqnarray*}
 \start
-	\ensuremath{\Varid{id}\mathrel{=}\conj{\Varid{f}}{\Varid{g}}}
+    \ensuremath{\Varid{id}\mathrel{=}\conj{\Varid{f}}{\Varid{g}}}
 %
 \just\equiv{ universal property }
 %

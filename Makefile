@@ -3,8 +3,11 @@ file = cp1718tp
 pdf: $(file).tex
 	pdflatex $(file).tex
 
-bib: 
-	bibtex $(file)
+bib: $(file).aux
+	bibtex $(file).aux
+
+index: $(file).idx
+	makeindex cp1718tp.idx
 
 run: $(file).lhs
 	sudo cp -a Bibliotecas/* .

@@ -1,0 +1,10 @@
+-- Outra solução !                                                   
+{--
+    where updateLedger :: (Transaction, Ledger) -> Ledger
+          updateLedger ((e1, (v, e2)), l) = update (e1, -v) (update (e2, v) l)
+
+          update :: (Entity, Value) -> Ledger -> Ledger
+          update (e, v) [] = [(e, v)]
+          update (e, v) ((x, y) : t) | x == e = (x, y + v) : t
+                                     | otherwise = (x, y) : (update (e, v) t)
+--}       
